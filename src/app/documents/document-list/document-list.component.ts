@@ -13,7 +13,7 @@ export class DocumentListComponent implements OnInit {
     new Document(
       "1",
       "CIT 260 - Objected Oriented Programming",
-      "description2",
+      "An introduction to object oriented programming using the Java programming language. Students will write computer programs using primitive data types, control structures, classes, and objects. Students will read and draw UML class diagrams and will use Java swing to write programs with a graphical user interface.",
       "url2",
       null
     ),
@@ -27,7 +27,7 @@ export class DocumentListComponent implements OnInit {
     new Document(
       "3",
       "CIT 425 - Data Warehousing",
-      "description3",
+      "This course defines the theory and practice of data analysis. The course will compare and contrast the operational and analytical database models. Students will learn how to define, implement and query a database warehouse by leveraging sample data warehouses built from Enterprise Resource Planning (ERP) and Customer Resource Management (CRM) solutions.",
       "url3",
       null
     ),
@@ -41,7 +41,7 @@ export class DocumentListComponent implements OnInit {
     new Document(
       "5",
       "CIT 495 - Senior Practicum",
-      "description3",
+      "This is a capstone experience for the Computer Information Technology major. There are two options available: A research paper on a relevant Information Technology topic or participate in service learning. The purpose of this course is to build on the knowledge that students have learned in the Computer Information Technology major.",
       "url3",
       null
     )
