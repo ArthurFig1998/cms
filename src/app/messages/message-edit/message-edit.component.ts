@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { stringify } from "@angular/core/src/util";
 import { Message } from "../message.model";
+import { MessagesService } from "../messages.service";
 
 @Component({
   selector: "cms-message-edit",
@@ -18,12 +19,13 @@ export class MessageEditComponent implements OnInit {
   @ViewChild("subject") subjectInputRef: ElementRef;
   @ViewChild("msgText") msgTextInputRef: ElementRef;
 
-  @Output() addMessageEvent = new EventEmitter<Message>();
-  currentSender: string = "Arthur";
+  currentSender: string = "10";
 
-  constructor() {}
+  constructor(private messageService: MessagesService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("Current Sender is: " + this.currentSender);
+  }
 
   onSendMessage() {
     const newSubject = this.subjectInputRef.nativeElement.value;
@@ -34,7 +36,8 @@ export class MessageEditComponent implements OnInit {
       newMsgText,
       this.currentSender
     );
-    this.addMessageEvent.emit(newMessage);
+    this.messageService.addMessage(newMessage);
+    console.log("Current Sender is: " + this.currentSender);
   }
 
   onClear() {
