@@ -5,13 +5,13 @@
         <span class="heading">Contacts</span>
       </div>
       <div class="col-xs-3">
-        <button class="btn btn-success">New Contact</button>
+        <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
       </div>
     </div>
     <div class="panel-body" style="margin: 0 auto">
       <div class="row" style="margin-top: 12%;">
         <div class="col-xs-12 margin-top">
-          <cms-contact-item *ngFor="let contactEl of contacts" [contact]="contactEl" (click)="onSelected(contactEl)">
+          <cms-contact-item *ngFor="let contactEl of contacts; let i = index" [contact]="contactEl" [index]='i'>
           </cms-contact-item>
         </div>
       </div>

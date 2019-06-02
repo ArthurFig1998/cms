@@ -4,6 +4,14 @@ export const MOCKCONTACTS: Contact[] = [
   // individual contacts
   // index 0
   {
+    id: "100",
+    name: "Arthur Figueiredo",
+    email: "fig16009@byui.edu",
+    phone: "385-482-9732",
+    imageUrl: "../../assets/images/ArthurandKristenWeddingDay-13.jpg",
+    group: null
+  },
+  {
     id: "1",
     name: "Rex Barzee",
     email: "barzeer@byui.edu",

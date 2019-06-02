@@ -11,7 +11,7 @@ import { ContactService } from "src/app/contacts/contact.service";
 export class MessageItemComponent implements OnInit {
   @Input() message: Message;
 
-  messageSender: string = "";
+  messageSender: string = "100";
   canEdit: boolean = false;
 
   constructor(private contactService: ContactService) {}
