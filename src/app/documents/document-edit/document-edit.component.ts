@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { DocumentsService } from "../documents.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { NgForm } from "@angular/forms";
+import { Document } from "../document.model";
 
 @Component({
   selector: "cms-document-edit",
@@ -39,5 +41,30 @@ export class DocumentEditComponent implements OnInit {
       this.editMode = true;
       this.document = JSON.parse(JSON.stringify(this.originalDocument));
     });
+  }
+
+  onSubmit(form: NgForm) {
+    const value = form.value;
+    const newDocument = new Document(
+      value.id,
+      value.name,
+      value.description,
+      value.url,
+      value.children
+    );
+
+    if (this.editMode) {
+      this.documentService.updateDocument(this.originalDocument, newDocument);
+    } else {
+      this.documentService.addDocument(newDocument);
+    }
+
+    this.editMode = false;
+    this.router.navigate(["/documents"], { relativeTo: this.route });
+  }
+
+  onCancel() {
+    this.editMode = false;
+    this.router.navigate(["/documents"], { relativeTo: this.route });
   }
 }

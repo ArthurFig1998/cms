@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Contact } from "../contacts.model";
 import { ContactService } from "../contact.service";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "cms-contact-edit",
@@ -15,6 +16,7 @@ export class ContactEditComponent implements OnInit {
   editMode: boolean = false;
   hasGroup: boolean = false;
   id: string;
+  invalidGroupContact: boolean = false;
 
   constructor(
     private contactService: ContactService,
@@ -40,5 +42,70 @@ export class ContactEditComponent implements OnInit {
 
       // if(contact group part)
     });
+  }
+
+  onSubmit(form: NgForm) {
+    const value = form.value;
+    const newContact = new Contact(
+      value.id,
+      value.name,
+      value.email,
+      value.phone,
+      value.imageUrl,
+      value.group
+    );
+
+    if (this.editMode) {
+      this.contactService.updateDocument(this.originalContact, newContact);
+    } else {
+      this.contactService.addDocument(newContact);
+    }
+
+    this.editMode = false;
+    this.router.navigate(["/contacts"], { relativeTo: this.route });
+  }
+
+  onCancel() {
+    this.editMode = false;
+    this.router.navigate(["/contacts"], { relativeTo: this.route });
+  }
+
+  isInvalidContact(newContact: Contact) {
+    if (!newContact) {
+      return true;
+    }
+
+    if (newContact.id === this.contact.id) {
+      return true;
+    }
+
+    for (let i = 0; i < this.groupContacts.length; i++) {
+      if (newContact.id === this.groupContacts[i].id) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  addToGroup($event: any) {
+    let selectedContact: Contact = $event.dragData;
+
+    this.invalidGroupContact = this.isInvalidContact(selectedContact);
+    if (this.invalidGroupContact) {
+      return;
+    }
+
+    this.groupContacts.push(selectedContact);
+    this.invalidGroupContact = false;
+  }
+
+  onRemoveItem(idx: number) {
+    if (idx < 0 || idx >= this.groupContacts.length) {
+      return;
+    }
+
+    this.groupContacts.splice(idx, 1);
+    this.invalidGroupContact = false;
   }
 }

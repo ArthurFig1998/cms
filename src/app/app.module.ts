@@ -24,6 +24,7 @@ import { WindRefService } from "./wind-ref.service";
 import { ContactEditComponent } from "./contacts/contact-edit/contact-edit.component";
 
 import { DndModule } from "ng2-dnd";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { DndModule } from "ng2-dnd";
     DocumentEditComponent,
     ContactEditComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, DndModule.forRoot()],
+  imports: [BrowserModule, AppRoutingModule, DndModule.forRoot(), FormsModule],
   providers: [WindRefService],
   bootstrap: [AppComponent]
 })
