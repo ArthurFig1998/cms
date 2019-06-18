@@ -17,9 +17,9 @@
         </div>
 
         <div class="col-sm-12 form-group">
-          <label for="documentUrl">Document URL</label>
-          <input type="text" id="documentUrl" name="documentUrl" class="form-control" size="150" max="255"
-            [ngModel]="document?.url" required #documentUrl="ngModel">
+          <label for="url">Document URL</label>
+          <input type="text" id="url" name="url" class="form-control" size="150" max="255" [ngModel]="document?.url"
+            required #documentUrl="ngModel">
           <div>
             <p class="alert alert-danger" *ngIf="!name.valid || !documentUrl.valid">The Document title and URl are
               required fields.</p>

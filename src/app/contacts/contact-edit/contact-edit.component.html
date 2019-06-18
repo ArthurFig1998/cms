@@ -52,7 +52,7 @@
 
       <div class="row">
         <div class="col-xs-12 alert alert-danger"
-          *ngIf="!name.valid && name.untouched || !email.valid || email.untouched">
+          *ngIf="!name.valid && !name.untouched || !email.valid || !email.untouched">
           <p>The Name and Email are required.</p>
         </div>
         <div class="col-xs-12">
