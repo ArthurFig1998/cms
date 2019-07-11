@@ -11,10 +11,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" cmsDropdown>
-          <a href="#" class="dropdown-toggle" role="button">User <span class="caret"></span></a>
+          <a class="dropdown-toggle" role="button">User <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Saving Data</a></li>
-            <li><a href="#">Fetch Data</a></li>
+            <li><a style="cursor: pointer" (click)="onSaveData()">Saving Data</a></li>
+            <li><a style="cursor: pointer" (click)="onFecthData()">Fetch Data</a></li>
           </ul>
         </li>
       </ul>

@@ -3,6 +3,7 @@ import { DocumentsService } from "../documents.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { Document } from "../document.model";
+import { DataStorageService } from "src/app/shared/data-storage.service";
 
 @Component({
   selector: "cms-document-edit",
@@ -18,7 +19,8 @@ export class DocumentEditComponent implements OnInit {
   constructor(
     private documentService: DocumentsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dataStorage: DataStorageService
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,8 @@ export class DocumentEditComponent implements OnInit {
 
     this.editMode = false;
     this.router.navigate(["/documents"], { relativeTo: this.route });
+
+    this.dataStorage.storeDocuments();
   }
 
   onCancel() {

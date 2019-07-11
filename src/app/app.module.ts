@@ -24,7 +24,9 @@ import { WindRefService } from "./wind-ref.service";
 import { ContactEditComponent } from "./contacts/contact-edit/contact-edit.component";
 
 import { DndModule } from "ng2-dnd";
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -45,9 +47,16 @@ import { FormsModule } from '@angular/forms';
     DropdownDirective,
     DocumentViewComponent,
     DocumentEditComponent,
-    ContactEditComponent
+    ContactEditComponent,
+    ContactsFilterPipe
   ],
-  imports: [BrowserModule, AppRoutingModule, DndModule.forRoot(), FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DndModule.forRoot(),
+    FormsModule,
+    HttpClientModule
+  ],
   providers: [WindRefService],
   bootstrap: [AppComponent]
 })

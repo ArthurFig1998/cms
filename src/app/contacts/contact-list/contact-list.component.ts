@@ -16,6 +16,7 @@ import { Subscription } from "rxjs";
 })
 export class ContactListComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];
+  term: string;
   private subscription: Subscription;
 
   constructor(private contactService: ContactService) {}
@@ -27,13 +28,20 @@ export class ContactListComponent implements OnInit, OnDestroy {
         this.contacts = contacts;
       }
     );
+
+    this.contactService.getContacts();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  onSelected(contact: Contact) {
-    this.contactService.contactSelectedEvent.emit(contact);
+  ///Chnages here from contactSelectedEvent to cntactChangeEvent and emit() for next()
+  onSelected(contact: Contact[]) {
+    this.contactService.contactChangeEvent.next(contact);
+  }
+
+  onKeyPress(value: string) {
+    this.term = value;
   }
 }

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Contact } from "../contacts.model";
 import { ContactService } from "../contact.service";
 import { NgForm } from "@angular/forms";
+import { DataStorageService } from "src/app/shared/data-storage.service";
 
 @Component({
   selector: "cms-contact-edit",
@@ -20,7 +21,8 @@ export class ContactEditComponent implements OnInit {
   constructor(
     private contactService: ContactService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dataStorage: DataStorageService
   ) {}
 
   ngOnInit() {
@@ -59,13 +61,15 @@ export class ContactEditComponent implements OnInit {
     );
 
     if (this.editMode) {
-      this.contactService.updateDocument(this.originalContact, newContact);
+      this.contactService.updateContact(this.originalContact, newContact);
     } else {
-      this.contactService.addDocument(newContact);
+      this.contactService.addContact(newContact);
     }
 
     this.editMode = false;
     this.router.navigate(["/contacts"], { relativeTo: this.route });
+
+    this.dataStorage.storeContacts();
   }
 
   onCancel() {
